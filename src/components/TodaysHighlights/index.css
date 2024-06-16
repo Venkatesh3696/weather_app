@@ -1,6 +1,5 @@
 .highlight-card {
-  background-color: #ffffff;
-  width: 250px;
+  min-width: 250px;
   height: 180px;
   padding: 10px;
   border-radius: 10px;
@@ -10,7 +9,7 @@
   justify-content: center;
   align-items: center;
   background-size: cover;
-  color: invert;
+  /* color: invert; */
 }
 
 .cards-container {
@@ -19,9 +18,10 @@
   justify-content: space-evenly;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  color: black;
+  /* color: black; */
   font-weight: bolder;
   font-size: 20px;
+  padding: 10px;
 }
 .card-row {
   display: flex;

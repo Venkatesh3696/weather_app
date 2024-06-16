@@ -2,8 +2,13 @@ import { useState } from "react";
 import "./index.css";
 import { FaCloudRain } from "react-icons/fa";
 
-const TodayWeather = ({ setLocation, onFetchWeather, weatherData }) => {
-  const [isLoading, setLoading] = useState("");
+const TodayWeather = ({
+  setLocation,
+  onFetchWeather,
+  weatherData,
+  isDarkMode,
+}) => {
+  const [isLoading, setLoading] = useState(false);
 
   const renderSearch = () => (
     <form>
@@ -52,7 +57,7 @@ const TodayWeather = ({ setLocation, onFetchWeather, weatherData }) => {
 
   console.log("weather", weatherData);
   return (
-    <div className="main-container">
+    <div className={`main-container ${isDarkMode ? "dark" : "light"}`}>
       <h1>Weather App</h1>
       {renderSearch()}
       {isLoading ? <p>Loading ... </p> : renderWeather()}

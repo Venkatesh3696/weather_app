@@ -52,11 +52,12 @@ function App() {
     cod: 200,
   });
 
+  const [forecastData, setForecastData] = useState({});
+
   const onFetchWeather = (e) => {
     e.preventDefault();
     const fetchUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${location}&appid=${process.env.REACT_APP_APIKEY}`;
     console.log("fetchUrl", fetchUrl);
-    console.log(fetchUrl);
     if (location) {
       try {
         fetch(fetchUrl)
@@ -73,8 +74,12 @@ function App() {
     }
   };
 
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
-    <div className="App">
+    <div className={`App ${isDarkMode ? "dark" : "light"} `}>
       <div className="app-inner-container">
         <TodayWeather
           location={location}
@@ -84,7 +89,7 @@ function App() {
           isDarkMode={isDarkMode}
         />
         <div className="insights-container">
-          <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+          <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
           {/* <Forecast /> */}
           <TodaysHilights isDarkMode={isDarkMode} weatherData={weatherData} />
         </div>
