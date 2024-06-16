@@ -1,6 +1,6 @@
 .App {
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
+  /* min-height: 100vh; */
   height: 100%;
 }
 
@@ -17,7 +17,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   border-radius: 60px;
 }
 
@@ -34,6 +34,8 @@
   .app-inner-container {
     grid-template-columns: 1fr;
     width: 100%;
+    padding: 0;
+    height: 100%;
   }
 }
 
@@ -45,6 +47,6 @@
 }
 @media only screen and (min-width: 1200px) {
   .cards-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

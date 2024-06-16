@@ -1,15 +1,13 @@
-import { useState } from "react";
 import "./index.css";
 import { FaCloudRain } from "react-icons/fa";
 
 const TodayWeather = ({
   setLocation,
+  location,
   onFetchWeather,
   weatherData,
   isDarkMode,
 }) => {
-  const [isLoading, setLoading] = useState(false);
-
   const renderSearch = () => (
     <form>
       <label htmlFor="search"></label>
@@ -18,6 +16,7 @@ const TodayWeather = ({
         id="search"
         placeholder="search for places..."
         onChange={(e) => setLocation(e.target.value)}
+        value={location}
       />
       <button type="submit" onClick={onFetchWeather}>
         search
@@ -58,9 +57,8 @@ const TodayWeather = ({
   console.log("weather", weatherData);
   return (
     <div className={`main-container ${isDarkMode ? "dark" : "light"}`}>
-      <h1>Weather App</h1>
       {renderSearch()}
-      {isLoading ? <p>Loading ... </p> : renderWeather()}
+      {!weatherData ? <p>search for a location </p> : renderWeather()}
     </div>
   );
 };

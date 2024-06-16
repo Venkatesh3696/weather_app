@@ -16,7 +16,7 @@ const TodaysHilights = ({ weatherData }) => {
   const sunset = new Date(sys.sunset * 1000);
   const sunsetTime = (
     <p>
-      {sunset.toLocaleTimeString("en-US", {
+      {sunset.toLocaleTimeString("en-IN", {
         hour: "2-digit",
         minute: "2-digit",
       })}

@@ -52,8 +52,6 @@ function App() {
     cod: 200,
   });
 
-  const [forecastData, setForecastData] = useState({});
-
   const onFetchWeather = (e) => {
     e.preventDefault();
     const fetchUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${location}&appid=${process.env.REACT_APP_APIKEY}`;
@@ -64,7 +62,6 @@ function App() {
           .then((response) => response.json())
           .then((result) => {
             setWeatherData(result);
-            console.log("fetchedData", result);
           });
       } catch (err) {
         console.error("error fetching weather", err);
@@ -80,6 +77,7 @@ function App() {
 
   return (
     <div className={`App ${isDarkMode ? "dark" : "light"} `}>
+      <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <div className="app-inner-container">
         <TodayWeather
           location={location}
@@ -89,8 +87,6 @@ function App() {
           isDarkMode={isDarkMode}
         />
         <div className="insights-container">
-          <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-          {/* <Forecast /> */}
           <TodaysHilights isDarkMode={isDarkMode} weatherData={weatherData} />
         </div>
       </div>

@@ -1,7 +1,15 @@
 .header-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  padding: 10px 50px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
 }
 .profile-image {
   width: 40px;
@@ -11,4 +19,7 @@
 
 #toggle {
   display: none;
+  border: 2px solid blueviolet;
+  cursor: pointer;
+  margin-right: 50px;
 }
