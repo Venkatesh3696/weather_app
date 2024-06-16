@@ -54,7 +54,6 @@ const TodayWeather = ({
     );
   };
 
-  console.log("weather", weatherData);
   return (
     <div className={`main-container ${isDarkMode ? "dark" : "light"}`}>
       {renderSearch()}
