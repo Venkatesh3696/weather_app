@@ -1,9 +1,17 @@
 import "./index.css";
 
-import React from "react";
-
 const Forecast = () => {
-  return <div>forecast</div>;
+  return (
+    <div>
+      <h1>Forecast</h1>
+      <p>Here is the forecast for the next 5 days:</p>
+      <ul>
+        {
+          // Loop through the forecast data and display each day's weather
+        }
+      </ul>
+    </div>
+  );
 };
 
 export default Forecast;

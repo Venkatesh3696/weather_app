@@ -1,0 +1,20 @@
+.highlight-card {
+  background-color: #ffffff;
+  width: 250px;
+  height: 180px;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

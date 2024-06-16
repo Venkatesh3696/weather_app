@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./index.css";
+import { FaCloudRain } from "react-icons/fa";
 
-const Dashboard = ({ apidetails }) => {
-  const [location, setLocation] = useState("");
+const TodayWeather = ({ location, setLocation }) => {
+  const [isLoading, setLoading] = useState("");
   const [weatherData, setWeatherData] = useState({
     coord: {
       lon: -0.1257,
@@ -47,18 +48,18 @@ const Dashboard = ({ apidetails }) => {
     cod: 200,
   });
 
-  const fetchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.APIKEY}`;
-
+  const fetchUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${location}&appid=${process.env.REACT_APP_APIKEY}`;
+  console.log("fetchUrl", fetchUrl);
   const onFetchWeather = (e) => {
     e.preventDefault();
     console.log(fetchUrl);
-    // fetch(fetchUrl)
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     setWeatherData(result);
-    //     console.log("fetchedData", result);
-    //   })
-    //   .catch((err) => console.error("error fetching weather", err));
+    fetch(fetchUrl)
+      .then((response) => response.json())
+      .then((result) => {
+        setWeatherData(result);
+        console.log("fetchedData", result);
+      })
+      .catch((err) => console.error("error fetching weather", err));
   };
 
   const renderSearch = () => (
@@ -67,7 +68,7 @@ const Dashboard = ({ apidetails }) => {
       <input
         type="search"
         id="search"
-        placeholder="search city"
+        placeholder="search for places..."
         onChange={(e) => setLocation(e.target.value)}
       />
       <button type="submit" onClick={onFetchWeather}>
@@ -77,30 +78,20 @@ const Dashboard = ({ apidetails }) => {
   );
 
   const renderWeather = () => {
-    const { main, weather, name, visibility, wind } = weatherData;
+    const { main, weather, name, visibility, wind, clouds } = weatherData;
     return (
       <div className="weather-container">
         <div>
-          <p>location {name}</p>
-        </div>
-        <div>
-          <p>temperature : {main.temp}</p>
-          <p>feels like : {main.feels_like}</p>
-          <p>min temperature : {main.temp_min}</p>
-          <p>max temperature : {main.temp_max}</p>
-          <p>pressure : {main.pressure}</p>
-          <p>humidity : {main.humidity}</p>
-        </div>
-        <div>
-          <p>{weather[0].main}</p>
-          <p>{weather[0].description}</p>
+          {/* <p>{weather[0].main}</p> */}
           <img
             src={`http://openweathermap.org/img/w/${weather[0].icon}.png`}
             alt="weather"
           />
-          <p>Visibility : {visibility} m </p>
-          <p>wind speed : {wind.speed} km/h </p>
+          <p>{weather[0].description}</p>
+          <FaCloudRain />
+          <p>Rain - {clouds.all} </p>
         </div>
+        <p>location {name}</p>
       </div>
     );
   };
@@ -110,9 +101,9 @@ const Dashboard = ({ apidetails }) => {
     <div className="main-container">
       <h1>Weather App</h1>
       {renderSearch()}
-      {renderWeather()}
+      {isLoading ? <p>Loading ... </p> : renderWeather()}
     </div>
   );
 };
 
-export default Dashboard;
+export default TodayWeather;
