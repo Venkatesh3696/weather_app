@@ -1,48 +1,60 @@
 import React from "react";
-import { GiSunset } from "react-icons/gi";
-import { GiSunrise } from "react-icons/gi";
+import { FaWind } from "react-icons/fa";
 import "./index.css";
 
-const TodaysHilights = () => {
+const TodaysHilights = ({ weatherData }) => {
+  const { sys, wind, main, visibility } = weatherData;
+  const sunrise = new Date(sys.sunrise * 1000);
+  const sunriseTime = (
+    <p>
+      {sunrise.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}
+    </p>
+  );
+  const sunset = new Date(sys.sunset * 1000);
+  const sunsetTime = (
+    <p>
+      {sunset.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}
+    </p>
+  );
   return (
     <div>
       <h2>Todays Highlights</h2>
       <div className="cards-container">
-        <div className="highlight-card">
+        <div className="highlight-card sunrise">
           <p>Sunrise & Sunset</p>
-          <div className="card-row">
-            <GiSunrise size={30} color="orange" />
-            <p>6:00 AM</p>
-          </div>
-          <div className="card-row">
-            <GiSunset size={30} color="orange" />
-            <p>6:00 PM</p>
-          </div>
+          {sunriseTime}
+          {sunsetTime}
         </div>
-        <div className="highlight-card">
+        <div className="highlight-card wind">
           <p>Wind status</p>
+          <FaWind color="orange" size={30} />
           <p>
-            <span>7.34</span> km/h
+            <span>{wind.speed}</span> km/h
           </p>
-          <p>6:00 AM</p>
         </div>
-        <div className="highlight-card">
+        <div className="highlight-card himidity">
           <p>Humidity</p>
-          <p>12 %</p>
+          <p>{main.humidity} %</p>
           <p></p>
         </div>
-        <div className="highlight-card">
+        <div className="highlight-card temperature ">
           <p>High & Low Temp</p>
-          <p>High 34 c</p>
-          <p>Low 22 c</p>
+          <p>High {main.temp_max} °C</p>
+          <p>Low {main.temp_min} °C</p>
         </div>
-        <div className="highlight-card">
+        <div className="highlight-card visibility">
           <p>Visibility</p>
-          <p>10 km</p>
+          <p>{visibility / 1000} Km </p>
         </div>
-        <div className="highlight-card">
+        <div className="highlight-card pressure">
           <p>Pressure</p>
-          <h1>1001 mm of Hg</h1>
+          <p>{main.pressure} mm of Hg</p>
         </div>
       </div>
     </div>

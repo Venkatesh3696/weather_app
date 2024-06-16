@@ -5,16 +5,68 @@
   padding: 10px;
   border-radius: 10px;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  color: invert;
 }
 
 .cards-container {
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  color: black;
+  font-weight: bolder;
+  font-size: 20px;
 }
-
 .card-row {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding: 0px;
+  margin: 0;
+}
+
+.sunrise {
+  background-image: url("../../../public/sunrise.webp");
+}
+.himidity {
+  background-image: url("../../../public/humidity.jpg");
+}
+.wind {
+  background-image: url("../../../public/wind.jpeg");
+}
+.temperature {
+  background-image: linear-gradient(
+    to left,
+    rgb(195, 173, 131),
+    rgb(132, 132, 192)
+  );
+}
+.visibility {
+  background-image: url("../../../public/visibilityj.jpeg");
+}
+.pressure {
+  background-image: linear-gradient(to right, #ffffff, #000000);
+}
+
+@media only screen and (max-width: 767px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
